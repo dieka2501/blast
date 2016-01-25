@@ -32,6 +32,7 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 	Route::post('/template/save','editTemplateController@save_template');
 	Route::get('/receiver/choose','receiverController@index');
 	Route::post('/email/send','sendController@do_send');
+	Route::post('/email/preview','previewController@index');
 
 });
 Route::get('/tes',"editTemplateController@tes_template");
