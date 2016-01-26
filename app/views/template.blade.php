@@ -13,6 +13,7 @@
   <link href="<?php echo Config::get('app.url');?>aset/css/jquery-ui-1.10.3.css" rel="stylesheet">
   <link href="<?php echo Config::get('app.url');?>aset/css/bootstrap-wysihtml5.css" rel="stylesheet">
   <link href="<?php echo Config::get('app.url');?>aset/css/prettyPhoto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}aset/css/jquery.datetimepicker.css"/>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -69,12 +70,12 @@
                 <li class="active"><a href="<?php echo Config::get('app.url');?>public/"><i class="fa fa-bar-chart-o"></i> <span>Dashboard</span></a></li>
                 <li><a href="<?php echo Config::get('app.url');?>public/blast/create"><i class="fa fa-envelope-o"></i> <span>Create Mail Blast</span></a></li>
                 <li><a href="<?php echo Config::get('app.url');?>public/blast/receiver/choose"><i class="fa fa-envelope-o"></i> <span>Send Email</span></a></li>
-                <li class="nav-parent"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-tags"></i> Master <span class="caret"></span></a>
+                 <!-- <li class="nav-parent"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-tags"></i> Master <span class="caret"></span></a>
                     <ul class="dropdown-menu children">
-                        <li><a href="<?php echo Config::get('app.url');?>public/table"><i class="fa fa-caret-right"></i> Category</a></li>
-                        <li><a href="<?php echo Config::get('app.url');?>public/table"><i class="fa fa-caret-right"></i> Brand</a></li>
+                        <li><a href="public/table"><i class="fa fa-caret-right"></i> Category</a></li>
+                        <li><a href="public/table"><i class="fa fa-caret-right"></i> Brand</a></li>
                     </ul>
-                </li>
+                 </li> -->
                 <li><a href="index-2.html"><i class="fa fa-user"></i> <span>Admin</span></a></li>
                 <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-search"></i></a>
                     <div class="dropdown-menu">
@@ -125,7 +126,7 @@
 <script src="<?php echo Config::get('app.url');?>aset/js/jquery.prettyPhoto.js"></script>
 <script src="<?php echo Config::get('app.url');?>aset/js/wysihtml5-0.3.0.min.js"></script>
 <script src="<?php echo Config::get('app.url');?>aset/js/bootstrap-wysihtml5.js"></script>
-
+<script src="{{Config::get('app.url')}}aset/js/jquery.datetimepicker.full.js"></script>
 
 <script src="<?php echo Config::get('app.url');?>aset/js/custom.js"></script>
 <script>

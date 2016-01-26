@@ -1,5 +1,6 @@
 @extends('template')
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{Config::get('app.url')}}aset/css/jquery.datetimepicker.css"/>
  <div class="pageheader">
   <h2>Choose Receiver</h2>
   <div class="breadcrumb-wrapper">
@@ -71,6 +72,15 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="checkschedule" placeholder=""  value="1" id='checkschedule' />
+                          Create Schedule
+                        </label>
+                    </div>
+                    <div class="form-group" id='timeschedule'>
+                      {{Form::text('schedule','',array('class'=>'form-control','id'=>'schedule','placeholder'=>'Choose Datetime','readonly'))}}
+                    </div>
                     <div class="form-group">
                         {{Form::select('id_mail_name',$arr_mail_name,$id_mail_name,array('class'=>'form-control','id'=>'id_mail_name'))}}
                     </div>
@@ -108,10 +118,13 @@
     {{Form::close()}}
 </div>
 <script src="{{Config::get('app.url')}}aset/js/jquery-1.11.1.min.js"></script>
+<script src="{{Config::get('app.url')}}aset/js/jquery.datetimepicker.full.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+      <?php if(Input::has('id') == false):?>
       $('#img-template').hide();
       $('#imginner').hide();
+      <?php endif;?>
       $('#receiver_list').keyup(function(){
           $('#send_to_2').prop('checked',true);
       });
@@ -142,4 +155,24 @@
       });
   });
 </script> 
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#timeschedule').hide();
+      $('#checkschedule').click(function(){
+          var check = $(this).prop('checked');
+          if(check == true){
+            $('#timeschedule').show();
+          }else{
+            $('#timeschedule').hide();
+          }
+      });
+    });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#schedule').datetimepicker({
+        format:'Y-m-d H:i',
+      });
+  });
+</script>
 @stop

@@ -8,4 +8,7 @@ class receiverMail Extends Eloquent{
 				->where('receiver.receiver_status','1')
 				->where('mail.id',$id)->get();
 	}
+	function add($data){
+		return receiverMail::insertGetId($data);
+	}
 }
