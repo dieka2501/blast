@@ -14,4 +14,7 @@ class mailblast Extends Eloquent{
 				->where('mail.id',$id)
 				->first();
 	}
+	function get_ten(){
+		return mailblast::orderBy('id','DESC')->take(5)->get();
+	}
 }

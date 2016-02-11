@@ -23,10 +23,20 @@ class sendController Extends BaseController{
 			}
 		}else{
 			$sender 	= Input::get('receiver_list');
-			$sending 	= explode(',', $sender);
+			$arr_send  	= explode(',', $sender);
+			// $sending 	= $arr_send;
+			foreach ($arr_send as $arr_sends) {
+				if($arr_sends != " "){
+					$sending[] 	= $arr_sends;
+					
+				}
+			}
+			// die;
+
 		}
+
 		if(Input::has('checkschedule')==false){
-			
+			// 
 			$get_data_email 		= $this->mail->join_template($id_mail_name);
 			$dataemail['header'] 	= $get_data_email->mail_header;
 			$dataemail['content'] 	= $get_data_email->mail_content;
@@ -43,6 +53,7 @@ class sendController Extends BaseController{
 				$message->to($datasend['to'])->from($datasend['from'])->subject($datasend['subject']);	
 			});	
 		}else{
+			// var_dump($sending);die;
 			$datetime 				= Input::get('schedule');
 			$ms['mail_id'] 			= $id_mail_name;
 			$ms['mail_subject'] 	= $subject;
@@ -50,12 +61,12 @@ class sendController Extends BaseController{
 			$ms['created_at'] 		= date('Y-m-d H:i:s');
 			$idschedule 			= $this->ms->add($ms);
 			foreach ($sending as $sendings) {
-				if($sendings != ""){
+				// if(!empty($sendings)){
 					$rm['mail_id'] 			= $idschedule;
 					$rm['receiver_id'] 		= $sendings;
 					$rm['created_at'] 		= date('Y-m-d H:i:s');
 					$this->rm->add($rm);	
-				}
+				// }
 				
 			}
 		}
