@@ -83,7 +83,7 @@
                     
                 </div><!-- panel-body -->
                 <div class="panel-footer">
-                    <button class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
+                    <button class="btn btn-primary"><i class="fa fa-send"></i> Next</button>
                     <div class="pull-right">
                     <button class="btn btn-success" id='btn-preview'>Preview</button>
                     </div>
