@@ -67,7 +67,14 @@ class receiverController Extends BaseController{
 		$view['email']		 		= $email;
 		$view['facebook']		 	= $facebook;
 		$view['linkedin']		 	= $linkedin;
+		$prev['header'] 			= $header;
+		$prev['content'] 			= $content;
+		$prev['image']	 			= $image;
+		$prev['twitter']			= $twitter;
+		$prev['facebook']			= $facebook;
+		$prev['email']				= $email;
 		$view['subject_mail']	 	= Session::get('subject_mail');
+		$view['prev'] 				= View::make('mail/template_ara/index',$prev);
 		$this->layout->content = View::make('blast_email/receiver',$view);
 	}
 	function autocomplete(){

@@ -107,7 +107,7 @@
     </div>
     
     <!-- content -->
-    @yield('content')
+    @yield('mailcontent')
     <!-- /content -->
     
   </div>

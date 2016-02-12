@@ -52,24 +52,31 @@ class sendController Extends BaseController{
 			Mail::queue('mail/'.$template."/index",$dataemail,function($message) use ($datasend){
 				$message->to($datasend['to'])->from($datasend['from'])->subject($datasend['subject']);	
 			});	
+			$ms['mail_id'] 			= $id_mail_name;
+			$ms['mail_subject'] 	= $subject;
+			$ms['send_time'] 		= date('Y-m-d H:i:s');
+			$ms['is_schedule'] 		= 0;
+			$ms['created_at'] 		= date('Y-m-d H:i:s');
 		}else{
 			// var_dump($sending);die;
 			$datetime 				= Input::get('schedule');
 			$ms['mail_id'] 			= $id_mail_name;
 			$ms['mail_subject'] 	= $subject;
 			$ms['send_time'] 		= $datetime;
+			$ms['is_schedule'] 		= 1;
 			$ms['created_at'] 		= date('Y-m-d H:i:s');
-			$idschedule 			= $this->ms->add($ms);
-			foreach ($sending as $sendings) {
-				// if(!empty($sendings)){
-					$rm['mail_id'] 			= $idschedule;
-					$rm['receiver_id'] 		= $sendings;
-					$rm['created_at'] 		= date('Y-m-d H:i:s');
-					$this->rm->add($rm);	
-				// }
-				
-			}
+			
 		}
-		return $this->layout->content = View::make('dashboard/index');
+		$idschedule 			= $this->ms->add($ms);
+		foreach ($sending as $sendings) {
+			// if(!empty($sendings)){
+				$rm['mail_id'] 			= $idschedule;
+				$rm['receiver_id'] 		= $sendings;
+				$rm['created_at'] 		= date('Y-m-d H:i:s');
+				$this->rm->add($rm);	
+			// }
+			
+		}
+		return Redirect::to('/blast');
 	}
 }

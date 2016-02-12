@@ -15,10 +15,11 @@
 <div class="contentpanel panel-email">
   {{Form::open(array('url'=>'/blast/email/send','method'=>'POST','files'=>true))}}
     <div class="row filemanager">
-        <div class="col-sm-6 col-lg-5 document">
+        <!-- <div class="col-sm-6 col-lg-5 document">
           
           <div class="thmb">
             <div class="thmb-prev">
+              
               <a href="{{Config::get('app.url')}}aset/mail/{{$template_file}}.png" data-rel="prettyPhoto" id="prettyphoto">
                 <img src="{{Config::get('app.url')}}aset/mail/{{$template_file}}.png" class="img-responsive" alt="" id="img-template"/>
               </a>
@@ -27,13 +28,18 @@
             <small class="text-muted" id="texttemplate">{{$template_name}}</small>
           </div><!-- thmb -->
           
-        </div><!-- col-sm-3 -->
+        <!--</div> --><!-- col-sm-3 -->
         
-        <div class="col-sm-6 col-lg-7">
+        <div class="col-sm-11 col-lg-12">
             
             <div class="panel panel-default">
+            @if($template_name != "")
+                <div class='panel-body'>
+                    {{$prev}}
+                </div>
+            @endif
                 <div class="panel-body">
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label><b>Email Template Name</b></label>
                         <div id='mail_name'>{{$mail_name}}</div>
                     </div>
@@ -65,13 +71,18 @@
                     <div class="form-group">
                         <label><b>LinkedIn</b></label>
                         <div id='linkedin'>{{$linkedin}}</div>
-                    </div>
+                    </div> -->
                 </div><!-- panel-body -->
               
             </div><!-- panel -->
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                    
+                    
+                    <div class="form-group">
+                        {{Form::select('id_mail_name',$arr_mail_name,$id_mail_name,array('class'=>'form-control','id'=>'id_mail_name'))}}
+                    </div>
                     <div class="checkbox">
                         <label>
                           <input type="checkbox" name="checkschedule" placeholder=""  value="1" id='checkschedule' />
@@ -80,9 +91,6 @@
                     </div>
                     <div class="form-group" id='timeschedule'>
                       {{Form::text('schedule','',array('class'=>'form-control','id'=>'schedule','placeholder'=>'Choose Datetime','readonly'))}}
-                    </div>
-                    <div class="form-group">
-                        {{Form::select('id_mail_name',$arr_mail_name,$id_mail_name,array('class'=>'form-control','id'=>'id_mail_name'))}}
                     </div>
                     <div class="form-group">
                         {{Form::text('subject_mail',$subject_mail,array('class'=>'form-control','id'=>'subject_mail','placeholder'=>'Subject Email'))}}
@@ -132,26 +140,27 @@
       $('#id_mail_name').change(function(){
 
           var ids = $(this).val();
-          $.post('{{url("json/mailtemplate")}}',{
-            'ids':ids
-          },function(data){
-              console.log(data);
-              $('#mail_name').html(data.mail_name);
-              $('#header').html(data.mail_header);
-              $('#imginner').attr('src','{{Config::get("app.url")}}aset/upload/'+data.mail_image);
-              $('#content').html(data.mail_content);
-              $('#twitter').html(data.mail_twitter);
-              $('#email').html(data.mail_email);
-              $('#facebook').html(data.mail_facebook);
-              $('#linkedin').html(data.mail_linkedin);
-              $('#prettyphoto').attr('href',"{{Config::get('app.url')}}aset/mail/"+data.file+".png");
-              $('#img-template').attr("src","{{Config::get('app.url')}}aset/mail/"+data.file+".png");
-              $('#hreftemplate').attr("href","{{Config::get('app.url')}}aset/mail/"+data.file+".png");
-              $('#hreftemplate').html(data.template_name);
-              $('#texttemplate').html(data.template_name);
-              $('#img-template').show();
-              $('#imginner').show();
-          });
+          window.location.href = "{{Config::get('app.url')}}public/blast/receiver/choose?id="+ids;
+          // $.post('{{url("json/mailtemplate")}}',{
+          //   'ids':ids
+          // },function(data){
+          //     console.log(data);
+          //     $('#mail_name').html(data.mail_name);
+          //     $('#header').html(data.mail_header);
+          //     $('#imginner').attr('src','{{Config::get("app.url")}}aset/upload/'+data.mail_image);
+          //     $('#content').html(data.mail_content);
+          //     $('#twitter').html(data.mail_twitter);
+          //     $('#email').html(data.mail_email);
+          //     $('#facebook').html(data.mail_facebook);
+          //     $('#linkedin').html(data.mail_linkedin);
+          //     $('#prettyphoto').attr('href',"{{Config::get('app.url')}}aset/mail/"+data.file+".png");
+          //     $('#img-template').attr("src","{{Config::get('app.url')}}aset/mail/"+data.file+".png");
+          //     $('#hreftemplate').attr("href","{{Config::get('app.url')}}aset/mail/"+data.file+".png");
+          //     $('#hreftemplate').html(data.template_name);
+          //     $('#texttemplate').html(data.template_name);
+          //     $('#img-template').show();
+          //     $('#imginner').show();
+          // });
       });
   });
 </script> 
