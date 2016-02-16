@@ -14,7 +14,7 @@
 <div class="contentpanel panel-email">
   {{Form::open(array('url'=>'/blast/template/save','method'=>'POST','files'=>true,'id'=>'frm-mailblast'))}}
     <div class="row filemanager">
-        <div class="col-sm-1 col-lg-1 document">
+        <div class="col-sm-2 col-lg-2 document" style="overflow-y: scroll;height: 784px;">
           <?php $i=0?>
           @foreach($template as $templates)
           <?php 
@@ -38,7 +38,7 @@
           @endforeach
         </div><!-- col-sm-3 -->
         
-        <div class="col-sm-5 col-lg-5">
+        <div class="col-sm-8 col-lg-8 col-md-offset-1">
             
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -89,96 +89,6 @@
                     </div>
                 </div>
             </div><!-- panel -->
-            
-        </div><!-- col-sm-9 -->
-
-        <div class="col-sm-5 col-lg-5">
-            
-            <div class="panel panel-default">
-                    <div class="panel-body">
-                        
-                        <div class="pull-right">
-                            <div class="btn-group mr10">
-                                <button class="btn btn-sm btn-white tooltips" type="button" data-toggle="tooltip" title="" data-original-title="Archive"><i class="glyphicon glyphicon-hdd"></i></button>
-                                <button class="btn btn-sm btn-white tooltips" type="button" data-toggle="tooltip" title="" data-original-title="Report Spam"><i class="glyphicon glyphicon-exclamation-sign"></i></button>
-                                <button class="btn btn-sm btn-white tooltips" type="button" data-toggle="tooltip" title="" data-original-title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
-                            </div>
-                            
-                            <div class="btn-group mr10">
-                                <div class="btn-group nomargin">
-                                    <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle tooltips" type="button" title="" data-original-title="Move to Folder">
-                                      <i class="glyphicon glyphicon-folder-close mr5"></i>
-                                      <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="#"><i class="glyphicon glyphicon-folder-open mr5"></i> Conference</a></li>
-                                      <li><a href="#"><i class="glyphicon glyphicon-folder-open mr5"></i> Newsletter</a></li>
-                                      <li><a href="#"><i class="glyphicon glyphicon-folder-open mr5"></i> Invitations</a></li>
-                                      <li><a href="#"><i class="glyphicon glyphicon-folder-open mr5"></i> Promotions</a></li>
-                                    </ul>
-                                </div>
-                                <div class="btn-group nomargin">
-                                    <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle tooltips" type="button" title="" data-original-title="Label">
-                                      <i class="glyphicon glyphicon-tag mr5"></i>
-                                      <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="#"><i class="glyphicon glyphicon-tag mr5"></i> Web</a></li>
-                                      <li><a href="#"><i class="glyphicon glyphicon-tag mr5"></i> Photo</a></li>
-                                      <li><a href="#"><i class="glyphicon glyphicon-tag mr5"></i> Video</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="btn-group mr5">
-                                <button class="btn btn-sm btn-white" type="button"><i class="fa fa-reply"></i></button>
-                                <button data-toggle="dropdown" class="btn btn-sm btn-white dropdown-toggle" type="button">
-                                  <span class="caret"></span>
-                                </button>
-                                <ul role="menu" class="dropdown-menu pull-right">
-                                  <li><a href="#">Reply to All</a></li>
-                                  <li><a href="#">Forward</a></li>
-                                  <li><a href="#">Print</a></li>
-                                  <li><a href="#">Delete Message</a></li>
-                                  <li><a href="#">Report Spam</a></li>
-                                </ul>
-                            </div>
-                            
-                        </div><!-- pull-right -->
-                        
-                        <div class="btn-group mr10">
-                            <h4 style="margin:0px;text-transform:uppercase;font-weight:600;">Live Preview</h4>
-                        </div>
-                        
-                        <div class="read-panel" style="height:649px;">
-                            
-                            <div class="media">
-                                <a href="#" class="pull-left">
-                                    <img alt="" src="<?php echo Config::get('app.url');?>aset/images/user-default.png" class="media-object">
-                                </a>
-                                <div class="media-body">
-                                    <span class="media-meta pull-right">Yesterday at 1:30am</span>
-                                    <h4 class="text-primary">Adiminstrator</h4>
-                                    <small class="text-muted">From: admin@continuum.com</small>
-                                </div>
-                            </div><!-- media -->
-                            
-                            <h4 class="email-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                            
-                            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritati.</p>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non</p>
-                            
-                            <h4 class="email-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-                            <p><strong>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong></p>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritati.</p>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non</p>
-                        
-                        </div><!-- read-panel -->
-                        
-                    </div><!-- panel-body -->
-                </div>
             
         </div><!-- col-sm-9 -->
         

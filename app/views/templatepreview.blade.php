@@ -19,6 +19,13 @@
   <script src="js/html5shiv.js"></script>
   <script src="js/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+  .back-prev {
+    position: absolute;
+    top: 75px;
+    left: 10px;
+  }
+  </style>
 </head>
 
 <body class="horizontal-menu">
@@ -111,11 +118,9 @@
     <!-- /content -->
     
   </div>
-  <div class="row">
-  <div class="col-md-12 text-right">
-      <a href="{{Config::get('app.url')}}public/blast/create" class="btn btn-warning">Back</a>
+  <div class="back-prev">
+      <a href="{{Config::get('app.url')}}public/blast/create" class="btn btn-warning"><i class="fa fa-chevron-left"></i> BACK</a>
   </div>
-</div>
 </section>
 
 <script src="<?php echo Config::get('app.url');?>aset/js/jquery-1.11.1.min.js"></script>
