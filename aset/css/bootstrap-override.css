@@ -1254,8 +1254,8 @@ small.media-desc {
 }
 
 .table th {
-	font-weight: normal;
-	font-family: 'LatoBold';
+	font-weight: 700;
+	font-family: 'Open Sans';
 }
 
 .table thead > tr > th {

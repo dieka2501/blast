@@ -101,11 +101,11 @@
                         </div>
                     </div><!-- pull-right -->
                     
-                    <h5 class="subtitle mb5">Inbox</h5>
+                    <h5 class="subtitle mb5">List Email Template</h5>
                     <p class="text-muted">Showing 1 - 15 of 230 messages</p>
                     
                     <div class="table-responsive">
-                        <label>List Email Template</label>
+                        <!-- <label>List Email Template</label> -->
                         <table class="table">
                             <tr>
                                 <th>No</th>

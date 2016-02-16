@@ -2102,6 +2102,11 @@ div.error label.error:before {
     box-shadow: 0 3px 0 rgba(12,12,12,0.03);
 }
 
+.filemanager .thmb img {
+    height: 156px;
+    width: 100%;
+}
+
 .filemanager .thmb.checked {
     border-color: #ccc;
 }
