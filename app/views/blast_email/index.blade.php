@@ -19,7 +19,13 @@
           @foreach($template as $templates)
           <?php 
             $i++;
-            $choose = ($i == 1)?'checked':"";
+            if(Input::has('id')){
+              $ids = Input::get('id');
+              $choose = ($ids == $templates->id_template)?'checked':"";   
+            }else{
+                 $choose = ($i == 1)?'checked':"";   
+            }
+           
           ?>
           <div class="thmb">
             <div class="ckbox ckbox-default">
@@ -33,11 +39,12 @@
             </div>
             <h5 class="fm-title"><a href="<?php echo Config::get('app.url');?>aset/images/template/1.png" data-rel="prettyPhoto">{{$templates->template_name}}</a></h5>
             <small class="text-muted">{{$templates->template_name}}</small>
-            <div class="text-center"><input type="radio" id="" name="id_template" value="{{$templates->id_template}}" {{$choose}}/></div>
+            <div class="text-center"><input type="radio" id="" class='radio_template' name="id_template" value="{{$templates->id_template}}" {{$choose}}/></div>
           </div><!-- thmb -->
           @endforeach
         </div><!-- col-sm-3 -->
-        
+        <?php $jform = json_decode($json,true); //var_dump($jform);die;?>
+
         <div class="col-sm-8 col-lg-8 col-md-offset-1">
             
             <div class="panel panel-default">
@@ -45,18 +52,24 @@
                     <div class="form-group">
                         <input type="text" name="mail_name" placeholder="Email Template Name" class="form-control" value="{{$mail_name}}" />
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="header" placeholder="Header" class="form-control" value="{{$header}}"/>
-                    </div>
-                    @if(Session::get('image')!=null)
-                      <img src="{{Config::get('app.url')}}aset/upload/{{Session::get('image')}}" class="img-responsive" height="50px" alt="" /> 
-                      {{Form::hidden('imagehid',Session::get('image'))}}   
-                    @endif
-                    <div class="form-group">
-                        <input type="file" name="image" placeholder="Images" class="form-control" />
-                    </div>
+                    <?php $i = 0;?>
+                    @foreach($html as $formvalue)
+                      <div class="form-group">
+
+                        <label><b>{{$label[$i]}}</b></label>
+                        {{$formvalue}}
+                    </div>  
+                    <?php $i++;?>
+                    @endforeach
+                    <!-- <div class="form-group">
+                        <input type="text" name="header" placeholder="Header" class="form-control" value=""/>
+                    </div> -->
                     
-                    <textarea id="tinymcetextarea" placeholder="Your message here..." class="form-control" name="content" rows="20" style="margin-bottom:20px;">{{$content}}</textarea>
+                   <!--  <div class="form-group">
+                        <input type="file" name="image" placeholder="Images" class="form-control" />
+                    </div> -->
+                    
+                    <!-- <textarea id="tinymcetextarea" placeholder="Your message here..." class="form-control tinymce" name="content" rows="20" style="margin-bottom:20px;"></textarea> -->
 
                     <div class="row" style="margin-top:20px;">
                       <div class="col-md-3">
@@ -101,7 +114,7 @@
 <script type="text/javascript" src="{{Config::get('app.url')}}aset/tinymce/plugin.min.js"></script>
 <script type="text/javascript">
   tinymce.init({
-    selector: "#tinymcetextarea",
+    selector: ".tinymce",
     menubar:false,
     plugins: "insertdatetime",
     plugins: "link code fullscreen",
@@ -118,5 +131,14 @@
           $('#frm-mailblast').submit();
       });
   }); 
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.radio_template').click(function(){
+          var ids = $(this).val();
+          // alert(ids);
+          window.location.href = "{{Config::get('app.url')}}public/blast/create?id="+ids;
+      });
+  })
 </script>
 @stop

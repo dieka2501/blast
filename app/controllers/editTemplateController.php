@@ -13,10 +13,24 @@ class editTemplateController Extends BaseController{
 			// $getdata 				= $this->html->get_id($ids);
 			// // $view['arr_action'] 	= ['#'=>'Choose An Action','/blast/template/draf'=>'Save As Draft','/blast/template/receiver'=>'Send Blast'];
 			// // $view['action'] 		= "";
+			if(Input::has('id')){
+				$id 		= Input::get('id');
+				$getjson 	= $this->html->get_id($id);
+			}else{
+				$getjson 	= $this->html->get_last();
+			}
+			$jsonform 					= json_decode($getjson->form);
 			$view['template'] 			= $this->html->get_all();
+			$view['json'] 				= $getjson->form;
+			// $view['form'] 				= $this->cform;
+
+			foreach ($jsonform as $key => $value) {
+				$view['html'][] 	= $this->cform->generate($key,$value->element,$value->label,Session::get($key));
+				$view['label'][]	= $value->label;
+			}
 			$view['mail_name']			= Session::get('mail_name');
-			$view['header'] 			= Session::get('header');
-			$view['content'] 			= Session::get('content');
+			// $view['header'] 			= Session::get('header');
+			// $view['content'] 			= Session::get('content');
 			$view['twitter'] 			= Session::get('twitter');
 			$view['email']	 			= Session::get('email');
 			$view['facebook'] 			= Session::get('facebook');

@@ -8,4 +8,7 @@ class template extends Eloquent{
 	function get_id($id){
 		return template::find($id);
 	}
+	function get_last(){
+		return template::orderBy('id_template','DESC')->first();
+	}
 }
