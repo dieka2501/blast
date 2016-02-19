@@ -19,6 +19,7 @@ class cform{
 		}elseif($element == 'file'){
 			$html = "";
 			if($value != null){
+				$html .= "<input type='hidden' name='".$name."' value='".$value."'>";
 				$html .= '<img src="'.Config::get('app.url').'aset/upload/'.Session::get('image').'" class="img-responsive" height="50px" alt="" /> '; 
 			}
 			$html .= "<input type='file' name='".$name."' id='".$name."' placeholder='".$label."'>";
