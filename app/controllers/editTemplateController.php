@@ -6,6 +6,7 @@ class editTemplateController Extends BaseController{
 		$this->html 	= new template;
 		$this->mail 	= new mailblast;
 		$this->cform 	= new cform;
+		$this->dm 		= new detailMail;
 		$this->path 	= base_path().'/aset/upload/';
 	}
 	function index(){
@@ -68,7 +69,7 @@ class editTemplateController Extends BaseController{
 		}
 
 	}
-	function save_template(){
+	function save_template_old(){
 		$id_template 	= Input::get('id_template');
 		$mail_name 		= Input::get('mail_name');
 		$header 		= Input::get('header');
@@ -116,6 +117,58 @@ class editTemplateController Extends BaseController{
 			Session::flash('email',$email);
 			Session::flash('faceboook',$facebook);
 			Session::flash('linkedin',$linkedin);
+			Session::flash('notip','<div class="alert alert-danger">Template dan nama template harus diisi</div>');
+			return Redirect::to('/blast/create');
+		}
+	}
+	function save_template(){
+		$id_template 	= Input::get('id_template');
+		$mail_name 		= Input::get('mail_name');
+		$allform 		= $_POST;
+		$allimage 		= $_FILES;
+		if(Input::has('id_template') && Input::has('mail_name')){
+			// if(Input::hasFile('image')){
+			// 	$images 	= Input::file('image');
+			// 	$ext 		= $images->getClientOriginalExtension();
+			// 	$filename 	= strtotime(date('Y-m-d H:i:s')).'.'.$ext;
+			// 	$images->move($this->path,$filename);
+			// 	$insert['mail_image'] = $filename;
+			// }
+			$insert['template_id'] 		= $id_template;
+			$insert['mail_name'] 		= $mail_name;
+			$insert['created_at'] 		= date('Y-m-d H:i:s');
+			$ids = $this->mail->add($insert);
+			if($ids > 0){
+				foreach ($allimage as $keyfile => $valuefile) {
+						if($valuefile['name'] != ""){
+							$fname 	   = explode(".", $valuefile['name']);
+							$ext 	   = end($fname);
+							$filename  = $keyfile.strtotime(date('Y-m-d H:i:s')).'.'.$ext;
+							$tempname  = $valuefile['tmp_name'];
+							move_uploaded_file($tempname, $path.$filename);
+							$allform[$keyfile] = $filename;
+							Session::flash($keyfile,$valuefile);		
+						}
+				}
+				foreach ($allform as $keyform => $valueform) {
+					if($keyform != 'mail_name' && $keyform != "id_template" && $keyform != "_token"){
+						Session::flash($keyform,$valueform);
+						$insertdetail['mail_id']	= $ids;	
+						$insertdetail['value'] 		= $valueform;	
+						$insertdetail['key'] 		= $keyform;	
+						$insertdetail['created_at'] = date('Y-m-d H:i:s');
+						$this->dm->add($insertdetail);
+					}
+					
+				}
+				
+				return Redirect::to('/blast/receiver/choose?id='.$ids);
+			}else{
+
+				Session::flash('notip','<div class="alert alert-danger">Oopss ada kesalahan, silahkan ulangi</div>');
+				return Redirect::to('/blast/create');
+			}
+		}else{
 			Session::flash('notip','<div class="alert alert-danger">Template dan nama template harus diisi</div>');
 			return Redirect::to('/blast/create');
 		}

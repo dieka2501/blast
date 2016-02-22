@@ -4,6 +4,7 @@ class receiverController Extends BaseController{
 	function __construct(){
 		$this->receiver 	= new receiver;
 		$this->mailblast 	= new mailblast;
+		$this->detail 		= new detailMail;
 		$this->rm 			= new receiverMail;
 	}
 
@@ -18,16 +19,21 @@ class receiverController Extends BaseController{
 			$id 					= Input::get('id');
 			$get_rm 				= $this->rm->get_idmail($id);
 			$gettemplateid 			= $this->mailblast->join_template($id);
-			$template_name  		= $gettemplateid->template_name;
+			$getdetail 				= $this->detail->get_idmail($id);
+			$template_name			= $gettemplateid->template_name;
 			$template_file 			= $gettemplateid->file;
-			$name_mail 				= $gettemplateid->mail_name;
-			$header 				= $gettemplateid->mail_header;
-			$content 				= $gettemplateid->mail_content;
-			$image 					= $gettemplateid->mail_image;
-			$twitter 				= $gettemplateid->mail_twitter;
-			$email 					= $gettemplateid->mail_email;
-			$facebook 				= $gettemplateid->mail_facebook;
-			$linkedin 				= $gettemplateid->mail_linkedin;
+			$template_id 			= $gettemplateid->template_id;		
+			foreach ($getdetail as $valuemail) {
+				$prev[$valuemail->key] = $valuemail->value;
+			}
+			// $name_mail 				= $gettemplateid->mail_name;
+			// $header 				= $gettemplateid->mail_header;
+			// $content 				= $gettemplateid->mail_content;
+			// $image 					= $gettemplateid->mail_image;
+			// $twitter 				= $gettemplateid->mail_twitter;
+			// $email 					= $gettemplateid->mail_email;
+			// $facebook 				= $gettemplateid->mail_facebook;
+			// $linkedin 				= $gettemplateid->mail_linkedin;
 			
 			$id_mail_name 			= $id;
 			$rm_list 				= [];
@@ -35,46 +41,48 @@ class receiverController Extends BaseController{
 				$rm_list[]	= $rms->receiver_email;
 			}
 			$receiver_list 			= implode(',', $rm_list);	
-
+			 $view['prev'] 			= View::make('mail/'.$template_file.'/index',$prev);
 		}else{
-			$id 					= Session::get('id');
-			$gettemplateid 			= [];
-			$template_name  		= Session::get('template_name');
-			// $arr_mail_name 			= [];
+			// $id 					= Session::get('id');
+			// $gettemplateid 			= [];
+			$template_id  			= Session::get('template_id');
+			// // $arr_mail_name 			= [];
 			$id_mail_name 			= Session::get('id_mail_name');
 			$receiver_list 			= Session::get('receiver_list');
-			$name_mail 				= Session::get('name_mail');
-			$header 				= Session::get('header');
-			$content 				= Session::get('content');
-			$image 					= Session::get('image');
-			$twitter 				= Session::get('twitter');
-			$email 					= Session::get('email');
-			$facebook 				= Session::get('facebook');
-			$linkedin 				= Session::get('linkedin');
-			$template_name  		= Session::get('template_name');
-			$template_file 			= Session::get('template_file');
+			// $name_mail 				= Session::get('name_mail');
+			// $header 				= Session::get('header');
+			// $content 				= Session::get('content');
+			// $image 					= Session::get('image');
+			// $twitter 				= Session::get('twitter');
+			// $email 					= Session::get('email');
+			// $facebook 				= Session::get('facebook');
+			// $linkedin 				= Session::get('linkedin');
+			$template_name  			= Session::get('template_name');
+			$template_file 				= Session::get('template_file');
+			$view['prev'] 				= "";
 		}
 		$view['arr_mail_name'] 		= $arr_mail_name;
 		$view['id_mail_name']	 	= $id_mail_name;
 		$view['template_name']	 	= $template_name;
+		$view['template_id']	 	= $template_id;
 		$view['template_file']	 	= $template_file;
 		$view['receiver_list']	 	= $receiver_list;
-		$view['mail_name']	 		= $name_mail;
-		$view['header']	 			= $header;
-		$view['image']	 			= $image;
-		$view['content']	 		= $content;
-		$view['twitter']	 		= $twitter;
-		$view['email']		 		= $email;
-		$view['facebook']		 	= $facebook;
-		$view['linkedin']		 	= $linkedin;
-		$prev['header'] 			= $header;
-		$prev['content'] 			= $content;
-		$prev['image']	 			= $image;
-		$prev['twitter']			= $twitter;
-		$prev['facebook']			= $facebook;
-		$prev['email']				= $email;
+		// $view['mail_name']	 		= $name_mail;
+		// $view['header']	 			= $header;
+		// $view['image']	 			= $image;
+		// $view['content']	 		= $content;
+		// $view['twitter']	 		= $twitter;
+		// $view['email']		 		= $email;
+		// $view['facebook']		 	= $facebook;
+		// $view['linkedin']		 	= $linkedin;
+		// $prev['header'] 			= $header;
+		// $prev['content'] 			= $content;
+		// $prev['image']	 			= $image;
+		// $prev['twitter']			= $twitter;
+		// $prev['facebook']			= $facebook;
+		// $prev['email']				= $email;
 		$view['subject_mail']	 	= Session::get('subject_mail');
-		$view['prev'] 				= View::make('mail/template_ara/index',$prev);
+		// $view['prev'] 				= View::make('mail/template_ara/index',$prev);
 		$this->layout->content = View::make('blast_email/receiver',$view);
 	}
 	function autocomplete(){
