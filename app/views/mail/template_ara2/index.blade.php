@@ -394,7 +394,7 @@
                                                     </tr>
                                                     <tr>
                                                     	<td valign="top" class="rightColumnContent" mc:edit="right_column_content">
-                                                            {{{{$content_kanan}}}}
+                                                            {{$content_kanan}}
                                                         </td>
                                                     </tr>
                                                 </table>

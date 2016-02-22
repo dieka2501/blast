@@ -15,20 +15,7 @@
 <div class="contentpanel panel-email">
   {{Form::open(array('url'=>'/blast/email/send','method'=>'POST','files'=>true))}}
     <div class="row filemanager">
-        <!-- <div class="col-sm-6 col-lg-5 document">
-          
-          <div class="thmb">
-            <div class="thmb-prev">
-              
-              <a href="{{Config::get('app.url')}}aset/mail/{{$template_file}}.png" data-rel="prettyPhoto" id="prettyphoto">
-                <img src="{{Config::get('app.url')}}aset/mail/{{$template_file}}.png" class="img-responsive" alt="" id="img-template"/>
-              </a>
-            </div>
-            <h5 class="fm-title"><a href="{{Config::get('app.url')}}aset/mail/{{$template_file}}.png" data-rel="prettyPhoto" id='hreftemplate'>{{$template_name}}</a></h5>
-            <small class="text-muted" id="texttemplate">{{$template_name}}</small>
-          </div><!-- thmb -->
-          
-        <!--</div> --><!-- col-sm-3 -->
+        
         
         <div class="col-sm-11 col-lg-12">
             
@@ -39,39 +26,7 @@
                 </div>
             @endif
                 <div class="panel-body">
-                    <!-- <div class="form-group">
-                        <label><b>Email Template Name</b></label>
-                        <div id='mail_name'>{{$mail_name}}</div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Header</b></label>
-                        <div id='header'>{{$header}}</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label><b>Image</b></label>
-                        <div id='image'><img src="{{Config::get('app.url')}}aset/upload/{{$image}}" class="img-responsive" alt="" id="imginner"/></div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Content</b></label>
-                        <div id='content'>{{$content}}</div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Twitter</b></label>
-                        <div id='twitter'>{{$twitter}}</div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Email</b></label>
-                        <div id='email'>{{$email}}</div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Facebook</b></label>
-                        <div id='facebook'>{{$facebook}}</div>
-                    </div>
-                    <div class="form-group">
-                        <label><b>LinkedIn</b></label>
-                        <div id='linkedin'>{{$linkedin}}</div>
-                    </div> -->
+                    
                 </div><!-- panel-body -->
               
             </div><!-- panel -->
@@ -82,6 +37,7 @@
                     
                     <div class="form-group">
                         {{Form::select('id_mail_name',$arr_mail_name,$id_mail_name,array('class'=>'form-control','id'=>'id_mail_name'))}}
+                        {{Form::hidden('id_template',$template_id)}}
                     </div>
                     <div class="checkbox">
                         <label>

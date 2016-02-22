@@ -44,7 +44,7 @@
                 <img alt="" src="<?php echo Config::get('app.url');?>aset/images/user-default.png" class="media-object">
                 <div class="media-body">
                     <h4>Administrator</h4>
-                    <span>"sample dong ya"</span>
+                    <span>"Sample"</span>
                 </div>
             </div>
           
@@ -119,7 +119,7 @@
     
   </div>
   <div class="back-prev">
-      <a href="{{Config::get('app.url')}}public/blast/create" class="btn btn-warning"><i class="fa fa-chevron-left"></i> BACK</a>
+      <a href="{{Config::get('app.url')}}public/blast/create?id={{$idstemp}}" class="btn btn-warning"><i class="fa fa-chevron-left"></i> BACK</a>
   </div>
 </section>
 
