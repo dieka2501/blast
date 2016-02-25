@@ -5,6 +5,7 @@ class sendController Extends BaseController{
 		date_default_timezone_set('Asia/Jakarta');
 		$this->receiver = new receiver;
 		$this->mail 	= new mailblast;
+		$this->dm 		= new detailMail;
 		$this->rm 		= new receiverMail;
 		$this->ms 		= new mailSchedule;
 	}
@@ -38,13 +39,17 @@ class sendController Extends BaseController{
 		if(Input::has('checkschedule')==false){
 			// 
 			$get_data_email 		= $this->mail->join_template($id_mail_name);
-			$dataemail['header'] 	= $get_data_email->mail_header;
-			$dataemail['content'] 	= $get_data_email->mail_content;
-			$dataemail['image'] 	= $get_data_email->mail_image;
-			$dataemail['twitter'] 	= $get_data_email->mail_twitter;
-			$dataemail['facebook'] 	= $get_data_email->mail_facebook;
-			$dataemail['email'] 	= $get_data_email->mail_email;
-			$dataemail['linkedin'] 	= $get_data_email->mail_linkedin;
+			$get_dm 				= $this->dm->get_idmail($id_mail_name);
+			foreach ($get_dm as $dms) {
+				$dataemail[$dms->key] 	= $dms->value;
+			}
+			// $dataemail['header'] 	= $get_data_email->mail_header;
+			// $dataemail['content'] 	= $get_data_email->mail_content;
+			// $dataemail['image'] 	= $get_data_email->mail_image;
+			// $dataemail['twitter'] 	= $get_data_email->mail_twitter;
+			// $dataemail['facebook'] 	= $get_data_email->mail_facebook;
+			// $dataemail['email'] 	= $get_data_email->mail_email;
+			// $dataemail['linkedin'] 	= $get_data_email->mail_linkedin;
 			$template 				= $get_data_email->file;
 			$datasend['to'] 		= $sending;
 			$datasend['subject']	= $subject;
@@ -77,6 +82,7 @@ class sendController Extends BaseController{
 			// }
 			
 		}
+		Session::flash('notip','<div class="alert alert-success">Email telah dikirim</div>');
 		return Redirect::to('/blast');
 	}
 }
