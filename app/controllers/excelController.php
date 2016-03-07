@@ -2,7 +2,7 @@
 class excelController Extends BaseController{
 	function __construct(){
 		date_default_timezone_set('Asia/Jakarta');
-		$this->path 		= app_path().'/aset/xls/';
+		$this->path 		= base_path().'/aset/xls/';
 		$this->receiver 	= new receiver;
 	}
 
