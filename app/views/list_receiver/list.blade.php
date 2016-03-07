@@ -29,6 +29,13 @@
                     <h5 class="subtitle mb5">List Email Receiver</h5>
                     <!-- <p class="text-muted">Showing 1 - 15 of 230 messages</p> -->
                     
+                    <form class="form-inline" method="POST" action="{{$url}}" enctype="multipart/form-data">
+                      <div class="form-group">
+                        <label for="exampleInputEmail2">Upload Receiver From Excel File</label>
+                        <input type="file" class="form-control" name='fileupload'>
+                      </div>
+                      <button type="submit" class="btn btn-success">Upload Receiver</button>
+                    </form>
                     <div class="table-responsive">
                         <!-- <label>List Email Template</label> -->
                         <table class="table">

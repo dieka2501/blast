@@ -36,6 +36,7 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 	Route::get('/receiver/list','listReceiverController@index');
 	Route::get('/receiver/create','listReceiverController@create');
 	Route::post('/receiver/create','listReceiverController@do_create');
+	Route::post('/receiver/upload','excelController@do_upload');
 	Route::get('/receiver/edit/{id}','listReceiverController@edit');
 	Route::post('/receiver/edit','listReceiverController@do_edit');
 	Route::get('/receiver/delete/{id}','listReceiverController@del');
