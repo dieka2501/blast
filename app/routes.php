@@ -41,7 +41,9 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 	Route::post('/receiver/edit','listReceiverController@do_edit');
 	Route::get('/receiver/delete/{id}','listReceiverController@del');
 
+
 });
+Route::post('/api/receiver/create_function(args, code)','apiController@add_receiver');
 Route::get('/tes/mandrill/info',"TestMandrillController@get_info");
 Route::get('/tes',"editTemplateController@tes_template");
 Route::get('/autocomplete/receiver',"receiverController@autocomplete");

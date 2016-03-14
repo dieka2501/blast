@@ -15,6 +15,11 @@ class receiverController Extends BaseController{
 			$arr_mail[$mailtemplate->id] = $mailtemplate->mail_name;
 		}
 		$arr_mail_name 			= $arr_mail;
+		$get_region 			= $this->receiver->get_region();
+		$arr_region 			= [];
+		foreach ($get_region as $regions) {
+			$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);
+		}
 		if(Input::has('id')){
 			$id 					= Input::get('id');
 			$get_rm 				= $this->rm->get_idmail($id);
@@ -23,17 +28,10 @@ class receiverController Extends BaseController{
 			$template_name			= $gettemplateid->template_name;
 			$template_file 			= $gettemplateid->file;
 			$template_id 			= $gettemplateid->template_id;		
+
 			foreach ($getdetail as $valuemail) {
 				$prev[$valuemail->key] = $valuemail->value;
 			}
-			// $name_mail 				= $gettemplateid->mail_name;
-			// $header 				= $gettemplateid->mail_header;
-			// $content 				= $gettemplateid->mail_content;
-			// $image 					= $gettemplateid->mail_image;
-			// $twitter 				= $gettemplateid->mail_twitter;
-			// $email 					= $gettemplateid->mail_email;
-			// $facebook 				= $gettemplateid->mail_facebook;
-			// $linkedin 				= $gettemplateid->mail_linkedin;
 			
 			$id_mail_name 			= $id;
 			$rm_list 				= [];
@@ -49,38 +47,21 @@ class receiverController Extends BaseController{
 			// // $arr_mail_name 			= [];
 			$id_mail_name 			= Session::get('id_mail_name');
 			$receiver_list 			= Session::get('receiver_list');
-			// $name_mail 				= Session::get('name_mail');
-			// $header 				= Session::get('header');
-			// $content 				= Session::get('content');
-			// $image 					= Session::get('image');
-			// $twitter 				= Session::get('twitter');
-			// $email 					= Session::get('email');
-			// $facebook 				= Session::get('facebook');
-			// $linkedin 				= Session::get('linkedin');
+			
 			$template_name  			= Session::get('template_name');
 			$template_file 				= Session::get('template_file');
 			$view['prev'] 				= "";
 		}
+
+		$view['arr_region'] 		= $arr_region;
+		$view['region'] 			= Session::get('region');
 		$view['arr_mail_name'] 		= $arr_mail_name;
 		$view['id_mail_name']	 	= $id_mail_name;
 		$view['template_name']	 	= $template_name;
 		$view['template_id']	 	= $template_id;
 		$view['template_file']	 	= $template_file;
 		$view['receiver_list']	 	= $receiver_list;
-		// $view['mail_name']	 		= $name_mail;
-		// $view['header']	 			= $header;
-		// $view['image']	 			= $image;
-		// $view['content']	 		= $content;
-		// $view['twitter']	 		= $twitter;
-		// $view['email']		 		= $email;
-		// $view['facebook']		 	= $facebook;
-		// $view['linkedin']		 	= $linkedin;
-		// $prev['header'] 			= $header;
-		// $prev['content'] 			= $content;
-		// $prev['image']	 			= $image;
-		// $prev['twitter']			= $twitter;
-		// $prev['facebook']			= $facebook;
-		// $prev['email']				= $email;
+		
 		$view['subject_mail']	 	= Session::get('subject_mail');
 		// $view['prev'] 				= View::make('mail/template_ara/index',$prev);
 		$this->layout->content = View::make('blast_email/receiver',$view);

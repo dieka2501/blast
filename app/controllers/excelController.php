@@ -17,6 +17,7 @@ class excelController Extends BaseController{
 				foreach ($result as $key => $value) {
 					$insert['receiver_name'] 	= $value->nama;
 					$insert['receiver_email'] 	= $value->email;
+					$insert['receiver_region'] 	= $value->region;
 					$insert['receiver_status'] 	= 1;
 					$insert['created_at'] 		= date('Y-m-d H:i:s');
 					$this->receiver->add($insert);

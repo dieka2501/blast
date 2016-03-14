@@ -43,7 +43,9 @@
                                 <th>No</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
+                                <th>Region</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             <?php $i=0;?>
                             @foreach($page as $pages)
@@ -53,6 +55,7 @@
                                 <td>{{$i}}</td>
                                 <td>{{$pages->receiver_name}}</td>
                                 <td>{{$pages->receiver_email}}</td>
+                                <td>{{ucfirst($pages->receiver_region)}}</td>
                                 <td>{{$stat}}</td>
                                 <td><a href="{{Config::get('app.url')}}public/blast/receiver/edit/{{$pages->id_receiver}}" class='btn btn-warning'>Edit</a> <a href="{{Config::get('app.url')}}public/blast/receiver/delete/{{$pages->id_receiver}}" onclick="return confirm('Are you sure?')"class='btn btn-danger'>Delete</a></td>
                             </tr>

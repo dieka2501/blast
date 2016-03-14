@@ -73,7 +73,7 @@
             <a class="menutoggle"><i class="fa fa-bars"></i></a>
             
             <ul class="nav nav-horizontal">
-                <li class="active"><a href="<?php echo Config::get('app.url');?>public/"><i class="fa fa-bar-chart-o"></i> <span>Dashboard</span></a></li>
+                <li><a href="<?php echo Config::get('app.url');?>public/"><i class="fa fa-bar-chart-o"></i> <span>Dashboard</span></a></li>
                 <li><a href="<?php echo Config::get('app.url');?>public/blast/create"><i class="fa fa-envelope-o"></i> <span>Create New Email</span></a></li>
                 <li><a href="<?php echo Config::get('app.url');?>public/blast/receiver/choose"><i class="fa fa-envelope-o"></i> <span>Send From Template</span></a></li>
                 <li><a href="<?php echo Config::get('app.url');?>public/blast/receiver/list"><i class="fa fa-envelope-o"></i> <span>List Email Receiver</span></a></li>

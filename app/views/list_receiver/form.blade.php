@@ -41,6 +41,10 @@
                             <input type="text" name="receiver_name" placeholder="Full Name" class="form-control" value="{{$receiver_name}}"/>
                         </div>
                         <div class="form-group">
+                            <label>Region Receiver</label>
+                            <input type="text" name="receiver_region" placeholder="City Of Receiver" class="form-control" value="{{$receiver_region}}"/>
+                        </div>
+                        <div class="form-group">
                             <label>Status Receiver</label>
                             {{Form::select('receiver_status',[1=>'Active',0=>'Unactive'],$receiver_status,['class'=>'form-control'])}}
                         </div>

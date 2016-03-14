@@ -29,4 +29,10 @@ class receiver Extends Eloquent{
 	function del($id){
 		return receiver::where($this->primaryKey,$id)->delete();
 	}
+	function get_region(){
+		return receiver::select('receiver_region')->distinct()->orderBy('receiver_region','ASC')->get();
+	}
+	function get_byregion($region){
+		return receiver::where('receiver_region',$region)->get();
+	}
 }

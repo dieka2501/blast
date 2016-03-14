@@ -67,6 +67,10 @@
                         </div>
                         <textarea id="receiver_list" placeholder="List Receiver" class="form-control" name="receiver_list" rows="5" style="margin-bottom:20px;">{{$receiver_list}}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label>Region</label> 
+                        {{Form::select('region[]',$arr_region,$region,['class'=>'form-control','multiple','id'=>'region'])}}                      
+                    </div>
                 </div><!-- panel-body -->
                 <div class="panel-footer">
                     <button class="btn btn-primary"><i class="fa fa-send"></i> Send</button>
@@ -90,9 +94,11 @@
       $('#imginner').hide();
       <?php endif;?>
       $('#receiver_list').keyup(function(){
+           $('#send_to_2').prop('checked',true);
+      });
+      $('#region').click(function(){
           $('#send_to_2').prop('checked',true);
       });
-
       $('#id_mail_name').change(function(){
 
           var ids = $(this).val();

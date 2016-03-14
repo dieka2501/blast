@@ -6,7 +6,7 @@
     <span class="label">You are here:</span>
     <ol class="breadcrumb">
       <li><a href="#">Home</a></li>
-      <li class="active">Sample Page</li>
+      <li class="active">Create Email</li>
     </ol>
   </div>
 </div>

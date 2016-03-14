@@ -17,6 +17,7 @@ class sendController Extends BaseController{
 		$send_to 			= Input::get('send_to');
 		$subject 			= Input::get('subject_mail');
 		$id_mail_name 		= Input::get('id_mail_name'); 
+		$sending 			= [];
 		if($send_to == 1){
 			$getreceiver = $this->receiver->get_all();
 			foreach ($getreceiver as $receivers) {
@@ -33,9 +34,20 @@ class sendController Extends BaseController{
 				}
 			}
 			// die;
-
+			if(Input::has('region')){
+				$inputregion = Input::get('region');
+				foreach ($inputregion as $regions) {
+					$getregion = $this->receiver->get_byregion($regions);
+					foreach ($getregion as $reg) {
+						if(!in_array($reg->receiver_email,$sending)){
+							array_push($sending, $reg->receiver_email);
+						}
+					}
+				}
+			}
 		}
-
+		
+		// var_dump($sending);die;
 		if(Input::has('checkschedule')==false){
 			// 
 			$get_data_email 		= $this->mail->join_template($id_mail_name);
@@ -50,6 +62,7 @@ class sendController Extends BaseController{
 			// $dataemail['facebook'] 	= $get_data_email->mail_facebook;
 			// $dataemail['email'] 	= $get_data_email->mail_email;
 			// $dataemail['linkedin'] 	= $get_data_email->mail_linkedin;
+			
 			$template 				= $get_data_email->file;
 			$datasend['to'] 		= $sending;
 			$datasend['subject']	= $subject;
