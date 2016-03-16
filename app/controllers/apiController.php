@@ -8,8 +8,10 @@ class apiController Extends BaseController{
 		if(Input::has('name') && Input::has('email')){
 			$name 	= Input::get('name');
 			$email 	= Input::get('email');
+			$region = Input::get('region');
 			$insert['receiver_name'] 	= $name;
 			$insert['receiver_email'] 	= $email;
+			$insert['receiver_region'] 	= $region;
 			$insert['receiver_status'] 	= 1;
 			$insert['created_at'] 		= date('Y-m-d H:i:s');
 			$ids = $this->receiver->add($insert);
