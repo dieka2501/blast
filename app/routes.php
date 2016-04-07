@@ -43,7 +43,7 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 
 
 });
-Route::post('/api/receiver/create_function(args, code)','apiController@add_receiver');
+Route::post('/api/receiver/create','apiController@add_receiver');
 Route::get('/tes/mandrill/info',"TestMandrillController@get_info");
 Route::get('/tes',"editTemplateController@tes_template");
 Route::get('/autocomplete/receiver',"receiverController@autocomplete");

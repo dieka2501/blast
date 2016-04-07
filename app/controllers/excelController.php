@@ -15,13 +15,18 @@ class excelController Extends BaseController{
 				$result = $reader->get();
 				// var_dump($reader->nama);
 				foreach ($result as $key => $value) {
-					$insert['receiver_name'] 	= $value->nama;
-					$insert['receiver_email'] 	= $value->email;
-					$insert['receiver_region'] 	= $value->region;
-					$insert['receiver_status'] 	= 1;
-					$insert['created_at'] 		= date('Y-m-d H:i:s');
-					$this->receiver->add($insert);
-					// echo $value->nama.'~~~'.$value->email.'<br>';
+					$getemail = $this->receiver->get_email($value->email);
+					if(count($getemail) == 0){
+						if($value->email != null ){
+							$insert['receiver_name'] 	= $value->nama;
+							$insert['receiver_email'] 	= $value->email;
+							$insert['receiver_region'] 	= $value->region;
+							$insert['receiver_status'] 	= 1;
+							$insert['created_at'] 		= date('Y-m-d H:i:s');
+							$this->receiver->add($insert);		
+						}
+						
+					}
 				}
 				
 				// echo $reader->dump();

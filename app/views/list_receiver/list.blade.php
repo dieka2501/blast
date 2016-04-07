@@ -61,7 +61,7 @@
                             </tr>
                             @endforeach
                         </table>
-                        
+                        {{$page->links()}}
                     </div>
                 </div>
             </div>
