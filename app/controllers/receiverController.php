@@ -16,7 +16,7 @@ class receiverController Extends BaseController{
 		}
 		$arr_mail_name 			= $arr_mail;
 		$get_region 			= $this->receiver->get_region();
-		$arr_region 			= [];
+		$arr_region 			= [''=>'--Choose region--'];
 		foreach ($get_region as $regions) {
 			$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);
 		}
