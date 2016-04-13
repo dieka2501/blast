@@ -31,7 +31,7 @@ class receiverController Extends BaseController{
 			$template_name			= $gettemplateid->template_name;
 			$template_file 			= $gettemplateid->file;
 			$template_id 			= $gettemplateid->template_id;		
-
+			$prev 					= [];
 			foreach ($getdetail as $valuemail) {
 				$prev[$valuemail->key] = $valuemail->value;
 			}
