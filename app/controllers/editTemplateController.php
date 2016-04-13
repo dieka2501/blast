@@ -145,7 +145,7 @@ class editTemplateController Extends BaseController{
 							$ext 	   = end($fname);
 							$filename  = $keyfile.strtotime(date('Y-m-d H:i:s')).'.'.$ext;
 							$tempname  = $valuefile['tmp_name'];
-							move_uploaded_file($tempname, $path.$filename);
+							move_uploaded_file($tempname, $this->path.$filename);
 							$allform[$keyfile] = $filename;
 							Session::flash($keyfile,$valuefile);		
 						}
