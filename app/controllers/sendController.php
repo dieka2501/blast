@@ -34,7 +34,7 @@ class sendController Extends BaseController{
 				}
 			}
 			// die;
-			if(Input::has('region')){
+			if(Input::has('region') && Input::get('region') != ""){
 				$inputregion = Input::get('region');
 				foreach ($inputregion as $regions) {
 					$getregion = $this->receiver->get_byregion($regions);
