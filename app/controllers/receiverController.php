@@ -9,7 +9,7 @@ class receiverController Extends BaseController{
 	}
 
 	function index(){
-		$getalltemplate 	= $this->mailblast->get_all();
+		$getalltemplate 	= $this->mailblast->get_all_detail();
 		$arr_mail[0] 		= "-- Select Name Email -- ";
 		foreach ($getalltemplate as $mailtemplate) {
 			$arr_mail[$mailtemplate->id] = $mailtemplate->mail_name;

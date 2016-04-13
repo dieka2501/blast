@@ -8,6 +8,10 @@ class mailblast Extends Eloquent{
 	function get_all(){
 		return mailblast::all();
 	}
+	function get_all_detail(){
+		return mailblast::join('mail_detail',$this->table.'.id','=','mail_detail.mail_id')
+						->orderBy($this->table.'.mail_name','ASC')->get();
+	}
 	function join_template($id){
 		return DB::table($this->table)
 				->join('template','mail.template_id','=','template.id_template')
