@@ -34,7 +34,7 @@ class sendController Extends BaseController{
 				}
 			}
 			// die;
-			if(Input::has('region') && Input::get('region') != ""){
+			if(Input::has('region') && count(Input::get('region')) >0 ) {
 				$inputregion = Input::get('region');
 				foreach ($inputregion as $regions) {
 					$getregion = $this->receiver->get_byregion($regions);
@@ -66,7 +66,7 @@ class sendController Extends BaseController{
 			$template 				= $get_data_email->file;
 			$datasend['to'] 		= $sending;
 			$datasend['subject']	= $subject;
-			$datasend['from']		= "kotarominami@data-driven.asia";
+			$datasend['from']		= "mailblast@data-driven.asia";
 			Mail::queue('mail/'.$template."/index",$dataemail,function($message) use ($datasend){
 				$message->to($datasend['to'])->from($datasend['from'])->subject($datasend['subject']);	
 			});	
