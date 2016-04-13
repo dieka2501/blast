@@ -17,12 +17,15 @@ class receiverController Extends BaseController{
 		$arr_mail_name 			= $arr_mail;
 		$get_region 			= $this->receiver->get_region();
 		$arr_region 			= [''=>'--Choose region--'];
-		foreach ($get_region as $regions) {
-			if($regions->receiver_region != "" ){
-				$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);	
-			}
-			
+		if(count($get_region) > 0){
+			foreach ($get_region as $regions) {
+				if($regions->receiver_region != "" ){
+					$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);	
+				}
+				
+			}	
 		}
+		
 		if(Input::has('id')){
 			$id 					= Input::get('id');
 			$get_rm 				= $this->rm->get_idmail($id);
@@ -32,15 +35,21 @@ class receiverController Extends BaseController{
 			$template_file 			= $gettemplateid->file;
 			$template_id 			= $gettemplateid->template_id;		
 			$prev 					= [];
-			foreach ($getdetail as $valuemail) {
-				$prev[$valuemail->key] = $valuemail->value;
+			if(count($getdetail) > 0){
+				foreach ($getdetail as $valuemail) {
+					$prev[$valuemail->key] = $valuemail->value;
+				}	
 			}
+			
 			
 			$id_mail_name 			= $id;
 			$rm_list 				= [];
-			foreach ($get_rm as $rms) {
-				$rm_list[]	= $rms->receiver_email;
+			if(count($get_rm) > 0){
+				foreach ($get_rm as $rms) {
+					$rm_list[]	= $rms->receiver_email;
+				}	
 			}
+			
 			$receiver_list 			= implode(',', $rm_list);	
 			 $view['prev'] 			= View::make('mail/'.$template_file.'/index',$prev);
 		}else{
