@@ -18,7 +18,10 @@ class receiverController Extends BaseController{
 		$get_region 			= $this->receiver->get_region();
 		$arr_region 			= [''=>'--Choose region--'];
 		foreach ($get_region as $regions) {
-			$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);
+			if($regions->receiver_region != "" ){
+				$arr_region[$regions->receiver_region] = ucfirst($regions->receiver_region);	
+			}
+			
 		}
 		if(Input::has('id')){
 			$id 					= Input::get('id');
