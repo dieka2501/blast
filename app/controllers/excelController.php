@@ -17,12 +17,22 @@ class excelController Extends BaseController{
 				foreach ($result as $key => $value) {
 					$getemail = $this->receiver->get_email($value->email);
 					if(count($getemail) == 0){
-						if($value->email != null ){
-							$insert['receiver_name'] 	= $value->nama;
-							$insert['receiver_email'] 	= $value->email;
-							$insert['receiver_region'] 	= $value->region;
-							$insert['receiver_status'] 	= 1;
-							$insert['created_at'] 		= date('Y-m-d H:i:s');
+						if($value->email != NULL ){
+							$insert['receiver_name'] 				= ($value->nama == NULL)?"":$value->nama;
+							$insert['receiver_email'] 				= ($value->email == NULL)?"":$value->email;
+							$insert['receiver_region'] 				= ($value->kota == NULL)?"":$value->kota;
+							$insert['receiver_company'] 			= ($value->perusahaan == NULL)?"":$value->perusahaan;
+                            $insert['receiver_position'] 			= ($value->jabatan == NULL)?"":$value->jabatan;
+                            $insert['receiver_purpose'] 			= ($value->tujuan == NULL)?"":$value->tujuan ;
+                            $insert['receiver_nature_business'] 	= ($value->nature_business == NULL)?"":$value->nature_business;
+                            $insert['receiver_country']	 			= ($value->negara == NULL)?"":$value->negara;
+                            $insert['receiver_phone'] 				= ($value->telepon == NULL)?"":$value->telepon;
+                            $insert['receiver_address'] 			= ($value->alamat == NULL)?"":$value->alamat;
+                            $insert['receiver_business'] 			= ($value->bidang == NULL)?"":$value->bidang;
+                            $insert['receiver_interest_product'] 	= ($value->interest_product == NULL)?"":$value->interest_product;
+                            $insert['receiver_source_information'] 	= ($value->source_information == NULL)?"":$value->source_information;
+							$insert['receiver_status'] 				= 1;
+							$insert['created_at'] 					= date('Y-m-d H:i:s');
 							$this->receiver->add($insert);		
 						}
 						

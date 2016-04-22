@@ -26,4 +26,28 @@ class apiController Extends BaseController{
 			return Response::json(array('status'=>false,'alert'=>"Missing Parameter name or email"));
 		}
 	}
+	function get_filter_visitor(){
+		$position 			= Input::get('position');
+		$region 			= Input::get('region');
+		$country 			= Input::get('country');
+		$lob 				= Input::get('lob');
+		$interest_product 	= Input::get('interest_product');
+		$purpose 			= Input::get('purpose');
+		$source 			= Input::get('source');
+		$email 				= Input::get('email');
+		$arr_mail 			= [];
+		$getfilter 			= $this->receiver->get_advance_filter($position,$region,$country,$lob,$interest_product,$purpose,$source,$email);
+		foreach ($getfilter as $filters) {
+			if(filter_var($filters->receiver_email,FILTER_VALIDATE_EMAIL)){
+				$arr_mail[$filters->receiver_email] = $filters->receiver_email;	
+			}
+			
+		}
+		return $getfilter;
+		// return Response::json($getfilter);
+		// return Form::select('receiver_list',$arr_mail,$arr_mail,['class'=>'form-control','multiple']);
+
+
+
+	}
 }
