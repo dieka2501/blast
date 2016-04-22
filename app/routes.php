@@ -43,6 +43,7 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 
 
 });
+Route::get('/verify/email',"verifyController@index");
 Route::post('/api/receiver/create','apiController@add_receiver');
 Route::post('/api/filter','apiController@get_filter_visitor');
 Route::get('/tes/mandrill/info',"TestMandrillController@get_info");
