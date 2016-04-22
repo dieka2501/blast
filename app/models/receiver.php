@@ -104,9 +104,9 @@ class receiver Extends Eloquent{
 			$sqllob 		= "(";
 			for ($cacahlob=0; $cacahlob < $clob; $cacahlob++) { 
 				if(isset($country[$cacahlob+1])){
-					$sqllob 	.= "`receiver_nature_business` like '%".$lob[$cacahlob]."%' OR ";		
+					$sqllob 	.= "`receiver_business` like '%".$lob[$cacahlob]."%' OR ";		
 				}else{
-					$sqllob 	.= "`receiver_nature_business` like '%".$lob[$cacahlob]."%'";
+					$sqllob 	.= "`receiver_business` like '%".$lob[$cacahlob]."%'";
 				}
 			}
 			$sqllob 		.= ") AND ";	
@@ -182,8 +182,8 @@ class receiver Extends Eloquent{
 		
 
 		$query = "SELECT * FROM receiver WHERE ".$sqlposition.$sqlregion.$sqlinterest.$sqlcountry.$sqllob.$sqlpurpose.$sqlsource.$sqlemail." ORDER BY receiver_name ASC";
-		echo $query;
-		// return DB::select($query);
+		// echo $query;
+		return DB::select($query);
 		// return DB::statement($query);
 	}
 

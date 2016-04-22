@@ -29,7 +29,8 @@ class receiverController Extends BaseController{
         $getregion              = $this->receiver->get_region();
         $getcountry             = $this->receiver->get_country();
         $getlob                 = $this->receiver->get_lob();
-        $getinterest            = $this->kategori->get_all();
+        // $getinterest            = $this->kategori->get_all();
+        $getinterest 			= $this->receiver->get_interest();
         // var_dump($getjabatan);
 		$arr_region 			= [''=>'--Choose Region--'];
 		if(count($get_region) > 0){
@@ -59,7 +60,7 @@ class receiverController Extends BaseController{
         $arr_lob                    = [''=>'--Choose Business--'];
         foreach ($getlob as $lobs) {
             if($lobs->receiver_business != ""){
-                if(strpos($lobs->receiver_business, ",") != FALSE){
+                if(strpos($lobs->receiver_business, ",") !== FALSE){
                     $explodebidang = explode(',', $lobs->receiver_business);
                     foreach ($explodebidang as $expbidang) {
                         if(array_search($expbidang, $arr_lob) === false ){
@@ -75,9 +76,26 @@ class receiverController Extends BaseController{
         }
         $arr_interest                    = [''=>'--Choose Interest Product--'];
         foreach ($getinterest as $interests) {
-            $arr_interest[strtolower($interests->nama_kategori)] = strtoupper($interests->nama_kategori);    
+            if($interests->receiver_interest_product != ""){
+                if(strpos($interests->receiver_interest_product, ",") !== FALSE){
+                    $explodeinterest = explode(',', $interests->receiver_interest_product);
+                    foreach ($explodeinterest as $expinterest) {
+                        if(array_search($expinterest, $arr_interest) === false ){
+                            $arr_interest[strtolower($expinterest)] = strtoupper($expinterest);    
+                        }
+                    }
+                }else{
+                    $arr_interest[strtolower($interests->receiver_interest_product)] = strtoupper($interests->receiver_interest_product);    
+                }
+                
+            }
+            
         }
-        
+        // $arr_interest                    = [''=>'--Choose Interest Product--'];
+        // foreach ($getinterest as $interests) {
+        //     $arr_interest[strtolower($interests->nama_kategori)] = strtoupper($interests->nama_kategori);    
+        // }
+
 		if(Input::has('id')){
 			$id 					= Input::get('id');
 			$get_rm 				= $this->rm->get_idmail($id);

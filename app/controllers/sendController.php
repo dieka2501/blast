@@ -24,8 +24,8 @@ class sendController Extends BaseController{
 				$sending[] = $receivers->receiver_email;
 			}
 		}else{
-			$sender 	= Input::get('receiver_list');
-			$arr_send  	= explode(',', $sender);
+			$arr_send 	= Input::get('receiver_list');
+			// $arr_send  	= explode(',', $sender);
 			// $sending 	= $arr_send;
 			foreach ($arr_send as $arr_sends) {
 				if($arr_sends != " "){
@@ -34,18 +34,18 @@ class sendController Extends BaseController{
 				}
 			}
 			// die;
-			$inputregion = Input::get('region');
-			if($inputregion[0] !="" ) {
+		// 	$inputregion = Input::get('region');
+		// 	if($inputregion[0] !="" ) {
 				
-				foreach ($inputregion as $regions) {
-					$getregion = $this->receiver->get_byregion($regions);
-					foreach ($getregion as $reg) {
-						if(!in_array($reg->receiver_email,$sending)){
-							array_push($sending, $reg->receiver_email);
-						}
-					}
-				}
-			}
+		// 		foreach ($inputregion as $regions) {
+		// 			$getregion = $this->receiver->get_byregion($regions);
+		// 			foreach ($getregion as $reg) {
+		// 				if(!in_array($reg->receiver_email,$sending)){
+		// 					array_push($sending, $reg->receiver_email);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
 		}
 		
 		// var_dump($sending);die;

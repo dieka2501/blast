@@ -43,9 +43,9 @@ class apiController Extends BaseController{
 			}
 			
 		}
-		return $getfilter;
+		// return $getfilter;
 		// return Response::json($getfilter);
-		// return Form::select('receiver_list',$arr_mail,$arr_mail,['class'=>'form-control','multiple']);
+		return Form::select('receiver_list[]',$arr_mail,$arr_mail,['class'=>'form-control','multiple']);
 
 
 
