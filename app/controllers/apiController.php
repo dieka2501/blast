@@ -6,15 +6,35 @@ class apiController Extends BaseController{
 	}
 	function add_receiver(){
 		if(Input::has('name') && Input::has('email')){
-			$name 	= Input::get('name');
-			$email 	= Input::get('email');
-			$region = Input::get('region');
+			$name 				= Input::get('name');
+			$email 				= Input::get('email');
+			$region 			= Input::get('region');
+			$position 			= Input::get('position');
+			$region 			= Input::get('region');
+			$country 			= Input::get('country');
+			$company 			= Input::get('company');
+			$lob 				= Input::get('lob');
+			$interest_product 	= Input::get('interest_product');
+			$purpose 			= Input::get('purpose');
+			$phone 				= Input::get('phone');
+			$source 			= Input::get('source');
+			$address 			= Input::get('address');
 			if(count($this->receiver->get_email($email)) == 0){
-				$insert['receiver_name'] 	= $name;
-				$insert['receiver_email'] 	= $email;
-				$insert['receiver_region'] 	= $region;
-				$insert['receiver_status'] 	= 1;
-				$insert['created_at'] 		= date('Y-m-d H:i:s');
+				$insert['receiver_name'] 				= $name;
+				$insert['receiver_email'] 				= $email;
+				$insert['receiver_region'] 				= $region;
+				$insert['receiver_company'] 			= $company;
+				$insert['receiver_position'] 			= $position;
+				$insert['receiver_purpose'] 			= $purpose;
+				$insert['receiver_business'] 			= $lob;
+				$insert['receiver_nature_business'] 	= $lob;
+				$insert['receiver_country'] 			= $country;
+				$insert['receiver_phone'] 				= $phone;
+				$insert['receiver_address']				= $address;
+				$insert['receiver_interest_product']	= $interest_product;
+				$insert['receiver_source_information']	= $source;
+				$insert['receiver_status'] 				= 1;
+				$insert['created_at'] 					= date('Y-m-d H:i:s');
 				$ids = $this->receiver->add($insert);
 				if($ids > 0){
 					return Response::json(array('status'=>true,'alert'=>"Insert data success"));	
