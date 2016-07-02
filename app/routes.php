@@ -40,6 +40,11 @@ Route::group(array('prefix'=>'/blast','before'=>'userAuth'),function(){
 	Route::get('/receiver/edit/{id}','listReceiverController@edit');
 	Route::post('/receiver/edit','listReceiverController@do_edit');
 	Route::get('/receiver/delete/{id}','listReceiverController@del');
+	Route::get('/email/sent','emailSentController@index');
+	Route::get('/email/bounced','mailBouncedController@index');
+	Route::get('/email/soft-bounced','mailSoftBouncedController@index');
+	Route::get('/email/rejected','mailRejectedController@index');
+
 
 
 });

@@ -36,25 +36,13 @@
                                 <th>Hard Bounce</th>
                                 <th>Soft Bounce</th>
                                 <th>Reject</th>
-                                <th>Complain</th>
-                                <th>Unsub</th>
-                                <th>Open</th>
-                                <th>Unique Open</th>
-                                <th>Click</th>
-                                <th>Unique Click</th>
                             </tr>
                             
                             <tr>
-                                <td>{{$stats['sent']}}</td>
-                                <td>{{$stats['hard_bounces']}}</td>
-                                <td>{{$stats['soft_bounces']}}</td>
-                                <td>{{$stats['rejects']}}</td>
-                                <td>{{$stats['complaints']}}</td>
-                                <td>{{$stats['unsubs']}}</td>
-                                <td>{{$stats['opens']}}</td>
-                                <td>{{$stats['unique_opens']}}</td>
-                                <td>{{$stats['clicks']}}</td>
-                                <td>{{$stats['unique_clicks']}}</td>
+                                <td><a href="{{Config::get('app.url')}}public/blast/email/sent">{{$stats['sent']}}</a></td>
+                                <td><a href="{{Config::get('app.url')}}public/blast/email/bounced">{{$stats['hard_bounces']}}</a></td>
+                                <td><a href="{{Config::get('app.url')}}public/blast/email/soft-bounced">{{$stats['soft_bounces']}}</a></td>
+                                <td><a href="{{Config::get('app.url')}}public/blast/email/rejected">{{$stats['rejects']}}</a></td>
                             </tr>
                             
                         </table>
